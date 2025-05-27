@@ -24,6 +24,6 @@ app.post('/tasks', async (req, res) => {
     res.send('Task added');
 });
 
-app.listen(6000, () => {
+app.listen(3100, () => {
     console.log('Server is running on port 3000');
 });
