@@ -1,8 +1,21 @@
 const express = require('express');
 const redis = require('redis');
 const bodyParser = require('body-parser');
+const helmet = require('helmet'); // ✅ 引入 helmet
 
 const app = express();
+
+// ✅ 设置 CSP，允许加载字体、样式等
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    fontSrc: ["'self'", "data:"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    scriptSrc: ["'self'"],
+    imgSrc: ["'self'", "data:"],
+  }
+}));
+
 app.use(bodyParser.json());
 
 const redisClient = redis.createClient({
